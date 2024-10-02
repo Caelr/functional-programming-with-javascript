@@ -38,7 +38,7 @@ This will start the Vite development server, and you can view your application a
 
 ## Project Structure
 
-The project is structured to follow functional programming principles, making the code modular, reusable, and maintainable. Here's a brief overview of the structure:
+The project is structured as follow:
 
 ```
 ├── src
