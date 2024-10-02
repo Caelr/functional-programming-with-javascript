@@ -49,13 +49,6 @@ The project is structured as follow:
 └── tsconfig.json      # TypeScript configuration
 ```
 
-### Functional Programming Principles Used
-
-- **Pure Functions**: Functions without side effects and predictable outputs.
-- **Immutability**: Avoiding state mutation to maintain consistency.
-- **First-class Functions**: Functions are treated as values, passed around as arguments or returned from other functions.
-- **Declarative Code**: Emphasizing what the code should do rather than how to do it, making the logic clear and maintainable.
-
 ## Scripts
 
 Here are the key scripts available in this project:
