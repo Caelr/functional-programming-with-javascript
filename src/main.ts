@@ -1,18 +1,15 @@
-import { compose } from './utils/compose'
+// Composition
+const increment: Increment = (n) => n + 1
+console.log(increment(1))
 
-const el = (tag: keyof HTMLElementTagNameMap) => document.createElement(tag)
+const toString: ToString = (n) => `${n}`
+console.log(toString(2))
 
-const addClass = (className: string) => {
-  return function (el: HTMLElement) {
-    el.classList.add(className)
-    return el
-  }
-}
+const incrementToString: IncrementToString = (n) => toString(increment(n))
+console.log(incrementToString(3))
 
-const div = compose(
-  addClass('bg-light'),
-  addClass('p-2'),
-)(el('div'))
 
-document.body.appendChild(div)
+const compose: Compose = (f, g) => x => f(g(x))
 
+const cIncrementToString = compose(toString, increment)
+console.log(cIncrementToString(3))
