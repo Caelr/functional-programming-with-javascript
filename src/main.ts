@@ -28,3 +28,23 @@ const curry2: Curry2 = f => a => b => f(a, b)
 
 const sum2 = curry2(nSum)
 console.log(sum2(1)(2))
+
+
+// Recursion
+const normalSumAll: NormalSumAll = (xs) => {
+  const result = xs.reduce((a, c) => a + c, 0)
+  return result
+}
+
+console.log(normalSumAll([1, 2, 3]))
+const sumAll: NormalSumAll = (xs) => {
+  if (xs.length === 0) return 0
+  const [head, ...rest] = xs
+  return head + sumAll(rest)
+}
+console.log(sumAll([1,2,3]))
+console.log(sumAll([]))
+
+const sumAll2: SumAll = (xs: number[]) => xs.length === 0 ? 0 : xs[0] + sumAll2(xs.slice(1))
+
+console.log(sumAll2([1,2,3]))
