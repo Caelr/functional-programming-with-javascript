@@ -26,6 +26,7 @@ console.log(decrement(2))
 const curry2: Curry2 = (f) => (a) => (b) => f(a, b)
 
 const sum2 = curry2(nSum)
+
 console.log(sum2(1)(2))
 
 // Recursion
@@ -110,3 +111,18 @@ const composedIncD2ie = compose((x => isLeft(x) ? x : right(increment(x.right)))
 
 console.log(composedIncD2ie(2))
 console.log(composedIncD2ie(0))
+
+
+const nil: List<never> = { _tag: 'Nil' }
+const cons = <A>(head: A, tail: List<A>): List<A> => ({
+  _tag: 'Cons',
+  head,
+  tail
+})
+
+const isNil = <A>(xs: List<A>): xs is Nil => xs._tag === 'Nil'
+
+const myList = cons(1, cons(2, cons(3, nil)))
+
+const showList: ShowList = xs => isNil(xs) ? '' : `${xs.head}` + (isNil(xs.tail) ? '' : `, ${showList(xs.tail)}`)
+console.log(showList(myList))

@@ -32,3 +32,17 @@ interface Left<E> {
   _tag: 'Left'
   left: E
 }
+
+type List<A> = Nil | Cons<A>
+
+interface Nil {
+  _tag: 'Nil'
+}
+
+interface Cons<A> {
+  _tag: 'Cons',
+  head: A,
+  tail: List<A>
+}
+
+type ShowList = <A>(xs: List<A>) => string
