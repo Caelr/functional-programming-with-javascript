@@ -69,3 +69,44 @@ const cDiv2Inc = compose(
 
 console.log(cDiv2Inc(2))
 console.log(cDiv2Inc(0))
+
+// Either
+const div2IfEven = (n: number) => {
+  if (n === 0) {
+    throw 'can not divide by 0'
+  } else if (n % 2 !== 0) {
+    throw `${n} is not an even number`
+  } else {
+    return 2 / n
+  }
+}
+
+console.log(div2IfEven(8))
+
+const left = <E, A = never>(e: E): Either<E, A> => ({
+  _tag: 'Left',
+  left: e,
+})
+
+const right = <A, E = never>(a: A): Either<E, A> => ({
+  _tag: 'Right',
+  right: a,
+})
+
+const isLeft = <E, A>(x: Either<E, A>): x is Left<E> => x._tag === 'Left'
+const d2ie = (num: number): Either<string, number> => {
+  if (num === 0) {
+    return left('can not divide by 0')
+  } else if (num % 2 !== 0) {
+    return left('it is not even')
+  } else {
+    return right(2/num)
+  }
+}
+
+console.log(d2ie(0))
+
+const composedIncD2ie = compose((x => isLeft(x) ? x : right(increment(x.right))), d2ie)
+
+console.log(composedIncD2ie(2))
+console.log(composedIncD2ie(0))

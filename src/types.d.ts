@@ -21,3 +21,14 @@ interface None {
 }
 
 type Div2 = (n: number) => Option<number>
+
+type Either<E, A> = Left<E> | Right<A>
+
+interface Right<A> {
+  _tag: 'Right'
+  right: A
+}
+interface Left<E> {
+  _tag: 'Left'
+  left: E
+}
